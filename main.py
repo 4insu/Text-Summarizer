@@ -1,6 +1,8 @@
 from textSummarizer.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from textSummarizer.pipeline.stage_02_data_validation import DataValidationTrainingPipeline
 from textSummarizer.pipeline.stage_03_data_transformation import DataTransformationTrainingPipeline
+from textSummarizer.pipeline.stage_04_model_trainer import ModelTrainerTrainingPipeline
+from textSummarizer.pipeline.stage_05_model_evaluation import ModelEvaluationTrainingPipeline
 from textSummarizer.logging import logger
 
 
@@ -31,6 +33,36 @@ try:
    logger.info(f"------ Stage {STAGE_NAME} has started ------")
    data_transformation = DataTransformationTrainingPipeline()
    data_transformation.main()
+   logger.info(f"------ Stage {STAGE_NAME} has completed ------\n\n<=============>")
+except Exception as e:
+        logger.exception(e)
+        raise e
+
+
+# DO NOT UNCOMMENT AND RUN ON YOUR LOCAL SYSTEM!
+
+"""
+
+STAGE_NAME = "Model Trainer stage"
+try: 
+   logger.info(f"*******************")
+   logger.info(f"------ Stage {STAGE_NAME} has started ------")
+   model_trainer = ModelTrainerTrainingPipeline()
+   model_trainer.main()
+   logger.info(f"------ Stage {STAGE_NAME} has completed ------\n\n<=============>")
+except Exception as e:
+        logger.exception(e)
+        raise e
+
+"""
+
+
+STAGE_NAME = "Model Evaluation stage"
+try: 
+   logger.info(f"*******************")
+   logger.info(f"------ Stage {STAGE_NAME} has started ------")
+   model_evaluation = ModelEvaluationTrainingPipeline()
+   model_evaluation.main()
    logger.info(f"------ Stage {STAGE_NAME} has completed ------\n\n<=============>")
 except Exception as e:
         logger.exception(e)
