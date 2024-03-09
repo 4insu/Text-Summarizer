@@ -10,3 +10,6 @@
 6. Update the pipeline
 7. Update the main.py
 8. Update app.py
+
+## ECR repo to store/save docker image
+- URI : 637423488242.dkr.ecr.ap-southeast-2.amazonaws.com/text-summarizer
