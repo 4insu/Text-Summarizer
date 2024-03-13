@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Summarizer</title>
-    <link rel="stylesheet" href="\assets\css\style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-
 <body>
-
     <div class="container">
-        <h1>Text Summarizer</h1>
+        <h1>Text Summarizer - Predict</h1>
 
-        <div class="input-section">
-            <textarea id="inputText" placeholder="Paste your text here..."></textarea>
-            <button id="summarizeBtn" onclick="summarizeText()">Summarize</button>
-        </div>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <div class="input-section">
+                <label for="inputType">Choose input type:</label>
+                <select id="inputType" name="input_type">
+                    <option value="text">Paste Text</option>
+                    <option value="pdf">Upload PDF</option>
+                </select>
+
+                <div id="textInput" class="input-type">
+                    <label for="text">Enter your text:</label>
+                    <textarea id="text" name="text" placeholder="Paste your text here..."></textarea>
+                </div>
+
+                <div id="pdfInput" class="input-type" style="display:none;">
+                    <label for="pdfFile">Upload PDF:</label>
+                    <input type="file" id="pdfFile" name="pdf_file">
+                </div>
+
+                <button type="submit">Predict</button>
+            </div>
+        </form>
 
         <div class="output-section">
-            <!-- <h2>Summary:</h2> -->
-            <button id="copyBtn" onclick="copyToClipboard()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path
-                        d="M17 21H7C5.89543 21 5 20.1046 5 19V7C5 5.89543 5.89543 5 7 5H17C18.1046 5 19 5.89543 19 7V19C19 20.1046 18.1046 21 17 21Z" />
-                </svg>
-
-            </button>
-            <div id="outputSummary"></div>
+            <h2>Summary:</h2>
+            <div id="outputSummary">
+                {% if summary %}
+                    {{ summary }}
+                {% endif %}
+            </div>
         </div>
     </div>
-
-    <script src="\assets\js\script.js"></script>
-
+    <script>
+        document.getElementById('inputType').addEventListener('change', function() {
+            var selectedInputType = this.value;
+            document.getElementById('textInput').style.display = (selectedInputType === 'text') ? 'block' : 'none';
+            document.getElementById('pdfInput').style.display = (selectedInputType === 'pdf') ? 'block' : 'none';
+        });
+    </script>
+    <script src="/assets/js/script.js"></script>
 </body>
-
 </html>

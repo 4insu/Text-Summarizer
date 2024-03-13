@@ -1,9 +1,46 @@
-function summarizeText() {
-    // Get the input text
-    var inputText = document.getElementById("inputText").value;
+document.getElementById("summarizeBtn").addEventListener("click", function () {
+    // Retrieve form data
+    const formData = new FormData(document.getElementById("summarizeForm"));
+    
+    // Add input_type field
+    formData.append("input_type", "text");  // Adjust the value based on your use case
+    
+    // Fetch options
+    const fetchOptions = {
+        method: "POST",
+        body: formData,
+    };
 
-    // Display the summary
-    document.getElementById("outputSummary").innerHTML = inputText;
+    // Fetch request
+    fetch("/predict", fetchOptions)
+        .then(response => {
+            if (response.ok) {
+                return response.text();
+            } else {
+                console.error("Error:", response.status);
+                throw new Error("Failed to fetch summary");
+            }
+        })
+        .then(summary => {
+            // Display the summary in the output section
+            document.getElementById("outputSummary").innerText = summary;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+});
+
+function createFormData(inputType, inputData) {
+    const formData = new FormData();
+    formData.append("input_type", inputType);
+
+    if (inputType === "text") {
+        formData.append("text", inputData);
+    } else if (inputType === "pdf") {
+        formData.append("pdf_file", inputData);
+    }
+
+    return formData;
 }
 
 function copyToClipboard() {

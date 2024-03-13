@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarizer - Predict</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Text Summarizer - Predict</h1>
+
+        <form action="/predict" method="post">
+            <div class="input-section">
+                <label for="text">Enter your text:</label>
+                <textarea id="text" name="text" placeholder="Paste your text here..."></textarea>
+                <input type="hidden" name="input_type" value="text">
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+
+        <div class="output-section">
+            <h2>Summary:</h2>
+            <div id="outputSummary">
+                {% if summary %}
+                    {{ summary }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/script.js"></script>
+
+</body>
+
+</html>
