@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Summarizer</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- <link rel="stylesheet" href="/assets/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('assets', path='/css/style.css') }}">
 </head>
 <body>
     <div class="container">
@@ -28,7 +29,7 @@
                     <input type="file" id="pdfFile" name="pdf_file">
                 </div>
 
-                <button type="submit">Predict</button>
+                <button type="submit">Summarize</button>
             </div>
         </form>
 
@@ -40,6 +41,7 @@
                 {% endif %}
             </div>
         </div>
+        <a href="/">Return to Home</a> <!-- Return button -->
     </div>
     <script>
         document.getElementById('inputType').addEventListener('change', function() {
@@ -48,6 +50,6 @@
             document.getElementById('pdfInput').style.display = (selectedInputType === 'pdf') ? 'block' : 'none';
         });
     </script>
-    <script src="/assets/js/script.js"></script>
+    <!-- <script src="/assets/js/script.js"></script> -->
 </body>
 </html>

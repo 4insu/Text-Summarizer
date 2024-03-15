@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Summarizer - Predict</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>Text Summarizer</title>
+    <!-- <link rel="stylesheet" href="/assets/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('assets', path='/css/style.css') }}">
 </head>
-
 <body>
-
     <div class="container">
         <h1>Text Summarizer - Predict</h1>
 
-        <form action="/predict" method="post">
+        <form action="/predict" method="post" enctype="multipart/form-data">
             <div class="input-section">
-                <label for="text">Enter your text:</label>
-                <textarea id="text" name="text" placeholder="Paste your text here..."></textarea>
-                <input type="hidden" name="input_type" value="text">
-                <button type="submit">Predict</button>
+                <label for="inputType">Choose input type:</label>
+                <select id="inputType" name="input_type">
+                    <option value="text">Paste Text</option>
+                    <option value="pdf">Upload PDF</option>
+                </select>
+
+                <div id="textInput" class="input-type">
+                    <label for="text">Enter your text:</label>
+                    <textarea id="text" name="text" placeholder="Paste your text here..."></textarea>
+                </div>
+
+                <div id="pdfInput" class="input-type" style="display:none;">
+                    <label for="pdfFile">Upload PDF:</label>
+                    <input type="file" id="pdfFile" name="pdf_file">
+                </div>
+
+                <button type="submit">Summarize</button>
             </div>
         </form>
 
@@ -30,10 +41,15 @@
                 {% endif %}
             </div>
         </div>
+        <a href="/">Return to Home</a> <!-- Return button -->
     </div>
-
-    <script src="/assets/js/script.js"></script>
-
+    <script>
+        document.getElementById('inputType').addEventListener('change', function() {
+            var selectedInputType = this.value;
+            document.getElementById('textInput').style.display = (selectedInputType === 'text') ? 'block' : 'none';
+            document.getElementById('pdfInput').style.display = (selectedInputType === 'pdf') ? 'block' : 'none';
+        });
+    </script>
+    <!-- <script src="/assets/js/script.js"></script> -->
 </body>
-
 </html>

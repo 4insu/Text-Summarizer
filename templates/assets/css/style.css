@@ -1,3 +1,4 @@
+/* Reset styles and basic setup */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -6,7 +7,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 600px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
@@ -14,16 +15,22 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Headings */
 h1, h2 {
     color: #333;
-    text-align: center; /* Center the headings */
+    text-align: center;
 }
 
-.input-section {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Form styles */
+form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
 }
 
 textarea {
@@ -36,46 +43,34 @@ textarea {
     resize: vertical;
 }
 
-/* Style for Submit Button */
-#summarizeBtn {
-    padding: 10px;
+/* Button styles */
+button {
+    display: inline-block;
+    padding: 12px 20px;
+    margin-top: 10px;
     font-size: 16px;
     cursor: pointer;
-    background-color: rgba(66, 133, 244, 0.6);;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-#summarizeBtn:hover {
-    background-color: rgba(45, 98, 163, 0.8);
-    transform: scale(1.05); /* Scale the button on hover */
-}
-
-/* Style for Copy Button */
-#copyBtn {
-    padding: 8px; /* Adjust the padding for height */
-    font-size: 14px; /* Adjust the font size */
-    cursor: pointer;
-    background-color: rgba(66, 133, 244, 0.6); /* Translucent blue, adjust the alpha value */
+    background-color: #4CAF50;
     color: #fff;
     border: none;
     border-radius: 4px;
     transition: background-color 0.3s ease-in-out;
 }
 
-#copyBtn:hover {
-    background-color: rgba(45, 98, 163, 0.8); /* Translucent darker blue, adjust the alpha value */
+button:hover {
+    background-color: #45a049;
 }
 
-
+/* Output section styles */
 .output-section {
-    border-top: 2px solid #ddd;
-    padding-top: 20px;
+    margin-top: 30px;
 }
 
 #outputSummary {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
     color: #555;
     font-size: 16px;
 }
