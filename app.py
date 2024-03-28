@@ -63,6 +63,7 @@ import streamlit as st
 import PyPDF2
 import speech_recognition as sr
 from textSummarizer.pipeline.prediction import PredictionPipeline
+from fpdf import FPDF
 
 # Function to capture audio and convert it to text
 def audio_to_text():
@@ -71,13 +72,14 @@ def audio_to_text():
         st.write("Listening...")
         st.write("Toggle the checkbox to start/stop speaking.")
         while st.session_state['listening']:
-            audio = r.listen(source, phrase_time_limit = 100)  # Set the maximum recording time to 10 seconds (adjust as needed)
+            audio = r.listen(source, phrase_time_limit=100)  # Set the maximum recording time to 10 seconds (adjust as needed)
             try:
                 text = r.recognize_google(audio)
                 st.write("You said:", text)
                 summarizer = PredictionPipeline()
                 summary = summarizer.predict(text)
                 st.write("Summary:", summary)
+                return summary
             except sr.UnknownValueError:
                 st.error("Sorry, I could not understand what you said.")
             except sr.RequestError as e:
@@ -91,9 +93,24 @@ def extract_text_from_pdf(pdf_file):
         text += pdf_reader.pages[page_number].extract_text()
     return text.encode('latin-1', 'replace').decode('latin-1')
 
+# Function to generate PDF from summary text
+def generate_pdf(summary):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    
+    # Split summary into lines
+    lines = summary.split("\n")
+    
+    # Add each line to the PDF
+    for line in lines:
+        pdf.multi_cell(0, 10, txt=line, align="L")
+    
+    return pdf.output(dest='S').encode('latin-1', 'replace')
+
 def main():
     img_path = "images/logo_1.png"
-    st.sidebar.image(img_path, use_column_width = True)
+    st.sidebar.image(img_path, use_column_width=True)
 
     st.sidebar.title("Text Summarizer")
 
@@ -109,6 +126,10 @@ def main():
                 summarizer = PredictionPipeline()
                 summary = summarizer.predict(text_input)
                 st.write("Summary:", summary)
+                # Generate and download PDF
+                with st.expander("Download Summary"):
+                    pdf = generate_pdf(summary)
+                    st.download_button(label="Download Summary as PDF", data=pdf, file_name="summary.pdf", mime="application/pdf")
             else:
                 st.error("Please enter some text.")
     elif input_type == "PDF":
@@ -121,6 +142,10 @@ def main():
                 summarizer = PredictionPipeline()
                 summary = summarizer.predict(pdf_text)
                 st.write("Summary:", summary)
+                # Generate and download PDF
+                with st.expander("Download Summary"):
+                    pdf = generate_pdf(summary)
+                    st.download_button(label="Download Summary as PDF", data=pdf, file_name="summary.pdf", mime="application/pdf")
             else:
                 st.error("Please upload a PDF file.")
     elif input_type == "Voice":
@@ -129,7 +154,12 @@ def main():
         st.write("Toggle the checkbox to start/stop speaking.")
         st.session_state['listening'] = st.checkbox("Start/Stop Speaking")
         if st.session_state['listening']:
-            audio_to_text()
+            summary = audio_to_text()
+            # Generate and download PDF
+            with st.expander("Download Summary"):
+                pdf = generate_pdf(summary)
+                st.download_button(label="Download Summary as PDF", data=pdf, file_name="summary.pdf", mime="application/pdf")
 
 if __name__ == "__main__":
     main()
+
