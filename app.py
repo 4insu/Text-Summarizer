@@ -115,7 +115,7 @@ def main():
     st.sidebar.title("Text Summarizer")
 
     # Sidebar for input selection
-    input_type = st.sidebar.radio("Navigation", ("Text", "PDF", "Voice"))
+    input_type = st.sidebar.radio("Navigation", ("Text", "PDF", "Audio"))
 
     if input_type == "Text":
         st.title("Summarize Text")
@@ -132,6 +132,7 @@ def main():
                     st.download_button(label="Download Summary as PDF", data=pdf, file_name="summary.pdf", mime="application/pdf")
             else:
                 st.error("Please enter some text.")
+
     elif input_type == "PDF":
         st.title("Summarize PDF")
 
@@ -148,7 +149,8 @@ def main():
                     st.download_button(label="Download Summary as PDF", data=pdf, file_name="summary.pdf", mime="application/pdf")
             else:
                 st.error("Please upload a PDF file.")
-    elif input_type == "Voice":
+
+    elif input_type == "Audio":
         st.title("Summarize Audio")
 
         st.write("Toggle the checkbox to start/stop speaking.")
@@ -158,8 +160,7 @@ def main():
             # Generate and download PDF
             with st.expander("Download Summary"):
                 pdf = generate_pdf(summary)
-                st.download_button(label="Download Summary as PDF", data=pdf, file_name="summary.pdf", mime="application/pdf")
+                st.download_button(label="Download Summary as PDF", data = pdf, file_name = "summary.pdf", mime = "application/pdf")
 
 if __name__ == "__main__":
     main()
-
