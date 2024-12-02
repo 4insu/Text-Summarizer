@@ -3,53 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Summarizer</title>
-    <!-- <link rel="stylesheet" href="/assets/css/style.css"> -->
-    <link rel="stylesheet" href="{{ url_for('assets', path='/css/style.css') }}">
+    <title>Summarify</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <h1 class="logo"><span class="red">S</span>ummarify</h1>
+    </header>
+
+    <!-- Main Container -->
     <div class="container">
-        <h1>Text Summarizer - Predict</h1>
-
-        <form action="/predict" method="post" enctype="multipart/form-data">
-            <div class="input-section">
-                <label for="inputType">Choose input type:</label>
-                <select id="inputType" name="input_type">
-                    <option value="text">Paste Text</option>
-                    <option value="pdf">Upload PDF</option>
-                </select>
-
-                <div id="textInput" class="input-type">
-                    <label for="text">Enter your text:</label>
-                    <textarea id="text" name="text" placeholder="Paste your text here..."></textarea>
+        <main class="content">
+            <h2>AI Text Summarizer. Online</h2>
+            <div class="features">
+                <div class="feature">
+                    <img src="assets/images/text.png" alt="Text Summary Icon">
+                    <h3>Text Summary</h3>
                 </div>
-
-                <div id="pdfInput" class="input-type" style="display:none;">
-                    <label for="pdfFile">Upload PDF:</label>
-                    <input type="file" id="pdfFile" name="pdf_file">
+                <div class="feature">
+                    <img src="assets/images/pdf.png" alt="PDF Summary Icon">
+                    <h3>PDF Summary</h3>
                 </div>
-
-                <button type="submit">Summarize</button>
+                <div class="feature">
+                    <img src="assets/images/audio.png" alt="audio Icon">
+                    <h3>audio to text summary</h3>
+                </div>
+                <div class="feature">
+                    <img src="assets/images/aboutus.png" alt="About Us Icon">
+                    <h3>About Us</h3>
+                </div>
             </div>
-        </form>
-
-        <div class="output-section">
-            <h2>Summary:</h2>
-            <div id="outputSummary">
-                {% if summary %}
-                    {{ summary }}
-                {% endif %}
-            </div>
-        </div>
-        <a href="/">Return to Home</a> <!-- Return button -->
+        </main>
     </div>
-    <script>
-        document.getElementById('inputType').addEventListener('change', function() {
-            var selectedInputType = this.value;
-            document.getElementById('textInput').style.display = (selectedInputType === 'text') ? 'block' : 'none';
-            document.getElementById('pdfInput').style.display = (selectedInputType === 'pdf') ? 'block' : 'none';
-        });
-    </script>
-    <!-- <script src="/assets/js/script.js"></script> -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024-2025 Summarify Ltd. All rights reserved</p>
+    </footer>
 </body>
 </html>
