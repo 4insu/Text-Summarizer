@@ -12,14 +12,44 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+/* Default (Light Mode) 
+    transition: background-color 0.3s ease, color 0.3s ease;
+    */
 }
 
+
+
+/* Dark Mode */
+/* body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    width: 40px;
+    height: 40px;
+} */
+
+/* .theme-toggle img {
+    width: 100%;
+    height: 100%;
+} */
+/* Default Light Mode Icon (No Change) 
+.theme-toggle img {
+    filter: invert(1);
+    transition: filter 0.3s ease;
+}*/
 /* Header */
 .header {
     background: #000;
     color: #fff;
     padding: 20px 0;
-    transform: rotate(-1.5deg); /* Tilt the header */
+    transform: rotate(-1.5deg);
     transform-origin: left; /* Tilt starts from the left edge */
     position: relative;
     z-index: 1;
@@ -27,6 +57,10 @@ body {
     padding-left: 20px; /* Add some spacing from the left */
     height: 100px;
 }
+
+
+
+
 .header span{
     letter-spacing: 4.5px;
 }
@@ -106,4 +140,345 @@ body {
     font-size: 1em;
     text-align: center;
     margin-top: auto; /* Pushes the footer to the bottom of the page */
+}
+
+
+/* Summary Container */
+.summary-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Text Input Section */
+.text-input-section, .text-output-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Text Areas */
+.text-area {
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+/* Buttons */
+.btn {
+    align-self: flex-end;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.summarize-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+.summarize-btn:hover {
+    background-color: #218838;
+}
+
+.download-btn {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #c82333;
+}
+
+
+
+
+
+
+
+
+
+/* Container for PDF Summary */
+.pdf-upload-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 300px; /* Ensures it doesn't shrink smaller than the right column */
+}
+
+/* Upload Section Container */
+.pdf-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+/* PDF Upload Icon */
+.pdf-upload-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+.pdf-upload-container img{
+    height: 184px;
+    width: 200px;
+}
+/* Upload Button */
+.upload-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
+}
+
+.upload-btn:hover {
+    background-color: #0056b3;
+}
+/* PDF Upload Icon */
+#pdf-upload-icon {
+    width: 145px;
+    height: 145px;
+    object-fit: contain;
+    cursor: pointer; /* Makes the icon look clickable */
+    transition: transform 0.2s ease;
+}
+
+#pdf-upload-icon:hover {
+    transform: scale(1.1);
+}
+
+.text-output-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.text-area {
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.summarize-btn, .download-btn {
+    align-self: flex-end;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.summarize-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+.summarize-btn:hover {
+    background-color: #218838;
+}
+
+.download-btn {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #c82333;
+}
+
+/* Container for Audio Summary */
+.audio-record-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 300px; /* Ensures it doesn't shrink smaller than the right column */
+}
+
+/* Audio Record Container */
+.audio-record-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Record Button */
+.record-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff; /* Blue */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.record-btn:hover {
+    background-color: #0056b3;
+}
+
+
+.text-output-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.text-area {
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.summarize-btn, .download-btn {
+    align-self: flex-end;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.summarize-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+.summarize-btn:hover {
+    background-color: #218838;
+}
+
+.download-btn {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #c82333;
+}
+
+
+/* About Us Section */
+.about-us {
+    padding: 40px 20px;
+    background-color: #eae5dc; /* Matches the site's background */
+    text-align: center;
+}
+
+.about-us h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team-member {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 45%; /* Two cards per row */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+}
+
+.team-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.team-info {
+    text-align: left;
+    flex: 1;
+}
+
+.linkedin-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.linkedin-link:hover {
+    text-decoration: underline;
 }

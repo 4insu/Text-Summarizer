@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Summary</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo"><span class="red">S</span>ummarify</h1>
+    </header>
+
+    <div class="summary-container">
+        <div class="pdf-upload-section">
+            <h2 class="section-title">Upload PDF to Summarize</h2>
+            <div class="pdf-upload-container">
+                <img id="pdf-upload-icon" src="assets/images/upload-pdf.png" alt="Upload PDF" style="cursor: pointer;">
+                <input type="file" id="pdf-input" accept=".pdf" style="display: none;">
+                <p id="uploaded-file-name" style="margin-top: 10px; font-size: 16px; color: #333;">No file selected.</p>
+            </div>
+            
+            
+            <button id="summarize-btn" class="btn summarize-btn">Summarize</button>
+        </div>
+        <div class="text-output-section">
+            <textarea id="output-text" class="text-area" placeholder="Your summarized text will appear here..."></textarea>
+            <button id="download-btn" class="btn download-btn">Download</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024-2025 Summarify Ltd. All rights reserved</p>
+    </footer>
+
+    <script src="assets/js/pdf-summary.js" defer></script>
+
+</body>
+</html>
